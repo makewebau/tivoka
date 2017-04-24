@@ -147,8 +147,8 @@ class Request
     public function interpretResponse($json_struct) {
         //server error?
         if(($error = self::interpretError($this->spec, $json_struct, $this->id)) !== FALSE) {
-            $this->error        = $error['error']['code'];
-            $this->errorMessage = $error['error']['message'];
+            $this->error        = $error['error']['code'] ?? null;
+            $this->errorMessage = $error['error']['message'] ?? null;
             $this->errorData    = (isset($error['error']['data'])) ? $error['error']['data'] : null;
             return;
         }
